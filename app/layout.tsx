@@ -14,8 +14,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "BitSearch Engine",
-	description: "Search enginer",
+	title: "AdvertisingAgency.com",
+	description:
+		"An Advertising Agency That Actually Works Meta description: Need better ads? We create 10 world-class static ad creatives every day for your brand, so you can focus on what really matters—scaling.",
 };
 
 export default function RootLayout({
