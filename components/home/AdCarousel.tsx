@@ -43,20 +43,21 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 													alt={ad.title}
 													width={320}
 													height={400}
-													className="h-[350px] w-full rounded-lg object-contain"
+													className="h-[350px] w-full rounded-[14px] object-contain"
 													priority={index === 0}
 												/>
 											)}
 										</div>
 									</CardContent>
-									<CardFooter className="p-0 pt-2 pb-0">
+									<CardFooter className="p-0 pt-1 pb-0">
 										<div className="flex items-center gap-1 pt-2 text-muted-foreground text-sm">
-											<span>{ad.title}</span>
-											<span className="text-xs">·</span>
+											<span className="text-[#3F3F3F]">{ad.title}</span>
 											<TooltipProvider>
 												<Tooltip>
 													<TooltipTrigger asChild>
-														<button>(Concept ad) </button>
+														<button className="text-[#C3C3C3]">
+															(Concept ad){" "}
+														</button>
 													</TooltipTrigger>
 													<TooltipContent className="max-w-sm">
 														<p>
