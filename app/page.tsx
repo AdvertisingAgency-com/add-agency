@@ -1,20 +1,63 @@
-import CarouselImage from "@/components/home/CarouselImage";
+import { AdCarousel } from "@/components/home/AdCarousel";
 import { Button } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { client } from "@/sanity/lib/client";
+import { SanityDocument } from "next-sanity";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function Page() {
+// const POSTS_QUERY = `*[
+//   _type == "post"
+//   && defined(slug.current)
+// ]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+
+const options = { next: { revalidate: 30 } };
+
+const IMAGES = [
+	{
+		id: 1,
+		src: "/adslibrary.png",
+	},
+	{
+		id: 2,
+		src: "/documenting.png",
+	},
+	{
+		id: 3,
+		src: "/memix.png",
+	},
+	{
+		id: 4,
+		src: "/science.png",
+	},
+	{
+		id: 5,
+		src: "/sseo.png",
+	},
+];
+
+export default async function Page() {
+	const POSTS_QUERY = `*[_type == "post"]{ _id, title, image }`;
+	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="mx-auto max-w-6xl px-4 py-8">
-				<header className="mb-12">
-					<h1 className="font-bold text-3xl">as</h1>
+			<div className="py-8 pl-16">
+				<header className="mb-10">
+					<Link href="/">
+						<Image src="/logo.svg" alt="Logo" width={60} height={60} />
+					</Link>
 				</header>
 
 				<main className="space-y-8">
-					<div className="max-w-3xl space-y-6">
+					<div className="max-w-3xl space-y-2">
 						<p className="text-lg">
 							We're{" "}
-							<Link href="#" className="text-blue-600 hover:underline">
+							<Link href="/" className="text-blue-600 hover:underline">
 								AdvertisingAgency.com
 							</Link>
 							—crazy domain, right? We're that serious.
@@ -33,16 +76,21 @@ export default function Page() {
 						<div className="flex items-center gap-2">
 							<p>We've created ads for</p>
 							<div className="flex gap-2">
-								{["uber", "wordpress", "instagram", "medium", "draft"].map(
-									(brand, i) => (
-										<div key={i} className="h-6 w-6 rounded-full bg-gray-900" />
-									),
-								)}
+								{IMAGES.map((image) => (
+									<Image
+										src={image.src}
+										alt="Logo"
+										className="size-8 rounded-full object-cover"
+										width={80}
+										height={80}
+										key={image.id}
+									/>
+								))}
 							</div>
 							<p>, and many many more.</p>
 						</div>
 
-						<div className="space-y-4">
+						<div className="space-y-2">
 							<p>Clients keep saying the same thing about our ads: "WOW!"</p>
 							<p>
 								We didn't reinvent the wheel—just the way you get your ad
@@ -74,18 +122,45 @@ export default function Page() {
 
 						<p>
 							Below you can find ads and{" "}
-							<Link href="#" className="text-blue-600 hover:underline">
-								concepts
-							</Link>{" "}
+							{/* <Link href="#" className="text-blue-600 hover:underline">
+                concepts
+              </Link>{" "} */}
+							<TooltipProvider>
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<button className="text-blue-600">Concepts </button>
+									</TooltipTrigger>
+									<TooltipContent className="max-w-sm">
+										<p>
+											These are example concepts created by us for illustrative
+											purposes and are not official campaigns or partnerships
+											with these brands. The ads marked with “(Concept ad)” in
+											the slider below are conceptual examples.
+										</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>{" "}
 							we've created for a couple of your favorite brands. Are you next?
 						</p>
 
 						<div className="flex items-center gap-4">
 							<Button className="rounded-full bg-black text-white hover:bg-gray-800">
-								Join Today
+								<Link
+									href="https://buy.stripe.com/4gw14pbvAgd03Nm14l"
+									target="_blank"
+									rel="norefferer"
+								>
+									Join Today
+								</Link>
 							</Button>
 							<Button variant="outline" className="rounded-full">
-								Book a Call
+								<Link
+									href={"https://cal.com/advertisingagency/15min"}
+									target="_blank"
+									rel="norefferer"
+								>
+									Book a Call
+								</Link>
 							</Button>
 							<span className="flex items-center gap-2 text-gray-600 text-sm">
 								<span className="h-2 w-2 animate-blink rounded-full bg-yellow-400" />
@@ -93,10 +168,11 @@ export default function Page() {
 							</span>
 						</div>
 					</div>
-					<CarouselImage />
+					<AdCarousel ads={posts} />
 					<footer>
 						<p className="text-start text-gray-600 text-sm">
-							© 2024 AdvertisingAgency.com. All rights reserved.
+							© {new Date().getFullYear()} AdvertisingAgency.com. All rights
+							reserved.
 						</p>
 					</footer>
 				</main>
