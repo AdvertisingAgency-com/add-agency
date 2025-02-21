@@ -48,7 +48,7 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 													alt={ad.title}
 													width={320}
 													height={400}
-													className="h-[350px] w-full rounded-[14px] border border-[#E7E7E7] object-contain"
+													className="h-[350px] w-full rounded-[14px] border border-[#E7E7E7] object-fill md:object-contain "
 													priority={index === 0}
 												/>
 											)}
@@ -81,8 +81,8 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 						);
 					})}
 				</CarouselContent>
-				<CarouselPrevious className="-translate-y-1/2 absolute top-1/2 left-2 hidden md:flex" />
-				<CarouselNext className="-translate-y-1/2 absolute top-1/2 right-2 hidden md:flex" />
+				<CarouselPrevious className="-translate-y-1/2 absolute top-1/2 left-2 md:flex" />
+				<CarouselNext className="-translate-y-1/2 absolute top-1/2 right-2 md:flex" />
 			</Carousel>
 		</div>
 	);

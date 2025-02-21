@@ -37,15 +37,4 @@ export const postType = defineType({
 			type: "datetime",
 		}),
 	],
-	// preview: {
-	//   select: {
-	//     title: 'title',
-	//     author: 'author.name',
-	//     media: 'mainImage',
-	//   },
-	//   prepare(selection) {
-	//     const {author} = selection
-	//     return {...selection, subtitle: author && `by ${author}`}
-	//   },
-	// },
 });

@@ -1,11 +1,6 @@
+import { AdaptiveTooltip } from "@/components/adaptive-tooltip";
 import { AdCarousel } from "@/components/home/AdCarousel";
 import { Button } from "@/components/ui/button";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { client } from "@/sanity/lib/client";
 import { SanityDocument } from "next-sanity";
 import Image from "next/image";
@@ -30,12 +25,12 @@ export default async function Page() {
 				<AdCarousel ads={posts} />
 				<header className="mt-10 mb-6 px-4 sm:px-16">
 					<Link href="/">
-						<Image src="/logo.svg" alt="Logo" width={40} height={24} />
+						<Image src="/logo1.svg" alt="Logo" width={40} height={24} />
 					</Link>
 				</header>
 
 				<main className="mx-auto space-y-8">
-					<div className="max-w-3xl space-y-2 px-4 sm:px-16">
+					<div className=" space-y-2 px-4 sm:px-16">
 						<p>
 							We're{" "}
 							<span className="cursor-pointer text-blue-600">
@@ -102,22 +97,22 @@ export default async function Page() {
 						</div>
 
 						<p className="pb-4">
-							Below you can find ads and{" "}
-							<TooltipProvider>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<button className="text-blue-600">concepts </button>
-									</TooltipTrigger>
-									<TooltipContent className="max-w-sm">
-										<p>
-											These are example concepts created by us for illustrative
-											purposes and are not official campaigns or partnerships
-											with these brands. The ads marked with “(Concept ad)” in
-											the slider above are conceptual examples.
-										</p>
-									</TooltipContent>
-								</Tooltip>
-							</TooltipProvider>{" "}
+							Below you can find ads and <AdaptiveTooltip />
+							{/* <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="text-blue-600">concepts </button>
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-sm">
+                    <p>
+                      These are example concepts created by us for illustrative
+                      purposes and are not official campaigns or partnerships
+                      with these brands. The ads marked with “(Concept ad)” in
+                      the slider above are conceptual examples.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>*/}{" "}
 							we've created for a couple of your favorite brands. Are you next?
 						</p>
 
