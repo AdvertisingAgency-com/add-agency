@@ -11,34 +11,14 @@ import { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 
-// const POSTS_QUERY = `*[
-//   _type == "post"
-//   && defined(slug.current)
-// ]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
-
 const options = { next: { revalidate: 30 } };
 
 const IMAGES = [
-	{
-		id: 1,
-		src: "/adslibrary.png",
-	},
-	{
-		id: 2,
-		src: "/documenting.png",
-	},
-	{
-		id: 3,
-		src: "/memix.png",
-	},
-	{
-		id: 4,
-		src: "/science.png",
-	},
-	{
-		id: 5,
-		src: "/sseo.png",
-	},
+	{ id: 1, src: "/adslibrary.png" },
+	{ id: 2, src: "/documenting.png" },
+	{ id: 3, src: "/memix.png" },
+	{ id: 4, src: "/science.png" },
+	{ id: 5, src: "/sseo.png" },
 ];
 
 export default async function Page() {
@@ -46,16 +26,16 @@ export default async function Page() {
 	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="py-8 pl-16">
+			<div className="px-4 py-8 sm:px-16">
 				<header className="mb-4">
 					<Link href="/">
 						<Image src="/logo.svg" alt="Logo" width={40} height={24} />
 					</Link>
 				</header>
 
-				<main className="space-y-8">
+				<main className="mx-auto space-y-8">
 					<div className="max-w-3xl space-y-2">
-						<p className="">
+						<p>
 							We're{" "}
 							<Link href="/" className="text-blue-600 hover:underline">
 								AdvertisingAgency.com
@@ -73,14 +53,14 @@ export default async function Page() {
 							static ad creatives, on autopilot.
 						</p>
 
-						<div className="flex items-center gap-2">
+						<div className="flex flex-wrap items-center gap-2">
 							<p>We've created ads for</p>
 							<div className="flex gap-2">
 								{IMAGES.map((image) => (
 									<Image
 										src={image.src}
 										alt="Logo"
-										className="size-8 rounded-full object-cover"
+										className="size-6 rounded-full object-cover"
 										width={80}
 										height={80}
 										key={image.id}
@@ -108,23 +88,20 @@ export default async function Page() {
 								your brand—100% yours.
 							</p>
 							<p>
-								That's 3,650 ads per year. What do we charge? Way too
-								little—$3,500 per month.
+								That’s 3,650 ads per year. What do we charge? Way too
+								little—$6,000 per month.
 							</p>
 							<p>Why pay per ad when you can get unlimited?</p>
 							<p>Cancel or pause subscription anytime—no questions asked.</p>
 							<p>You should try us out—most don't look back.</p>
 							<p>
-								Not loving it after a week? Get $1750 back—low risk, high
+								Not loving it after a week? Get $3,000 back—low risk, high
 								reward.
 							</p>
 						</div>
 
 						<p>
 							Below you can find ads and{" "}
-							{/* <Link href="#" className="text-blue-600 hover:underline">
-                concepts
-              </Link>{" "} */}
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger asChild>
@@ -144,29 +121,33 @@ export default async function Page() {
 						</p>
 
 						<div className="flex items-center gap-4">
-							<Button className="rounded-full bg-black text-white hover:bg-gray-800">
+							<Button className="rounded-full bg-black text-[16px] text-white hover:bg-gray-800">
 								<Link
-									href="https://buy.stripe.com/4gw14pbvAgd03Nm14l"
+									href="https://buy.stripe.com/afadfa"
 									target="_blank"
 									rel="norefferer"
 								>
 									Join Today
 								</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full">
+							<Button variant="outline" className="rounded-full text-[16px]">
 								<Link
-									href={"https://cal.com/advertisingagency/15min"}
+									href="https://cal.com/advertisingagency/15min"
 									target="_blank"
 									rel="norefferer"
 								>
 									Book a Call
 								</Link>
 							</Button>
-							<span className="flex items-center gap-2 text-gray-600 text-sm">
+							<span className="hidden items-center gap-2 text-gray-600 text-sm md:flex">
 								<span className="h-2 w-2 animate-blink rounded-full bg-yellow-400" />
 								Only 3 spots available right now
 							</span>
 						</div>
+						<span className="flex items-center gap-2 text-gray-600 text-sm md:hidden">
+							<span className="h-2 w-2 animate-blink rounded-full bg-yellow-400" />
+							Only 3 spots available right now
+						</span>
 					</div>
 					<AdCarousel ads={posts} />
 					<footer>
