@@ -52,21 +52,23 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 									<CardFooter className="p-0 pt-1 pb-0">
 										<div className="flex items-center gap-1 pt-2 text-muted-foreground text-sm">
 											<span className="text-[#3F3F3F]">{ad.title}</span>
-											<TooltipProvider>
-												<Tooltip>
-													<TooltipTrigger asChild>
-														<button className="text-[#C3C3C3]">
-															(Concept ad)
-														</button>
-													</TooltipTrigger>
-													<TooltipContent className="max-w-sm">
-														<p>
-															This is a conceptual ad created for illustrative
-															purposes only and is not an official campaign.
-														</p>
-													</TooltipContent>
-												</Tooltip>
-											</TooltipProvider>
+											{ad.isConcept && (
+												<TooltipProvider>
+													<Tooltip>
+														<TooltipTrigger asChild>
+															<button className="text-[#C3C3C3]">
+																(Concept ad)
+															</button>
+														</TooltipTrigger>
+														<TooltipContent className="max-w-sm">
+															<p>
+																This is a conceptual ad created for illustrative
+																purposes only and is not an official campaign.
+															</p>
+														</TooltipContent>
+													</Tooltip>
+												</TooltipProvider>
+											)}
 										</div>
 									</CardFooter>
 								</Card>

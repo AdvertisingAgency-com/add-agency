@@ -22,7 +22,7 @@ const IMAGES = [
 ];
 
 export default async function Page() {
-	const POSTS_QUERY = `*[_type == "post"]{ _id, title, image }`;
+	const POSTS_QUERY = `*[_type == "post"]{ _id, title, image, isConcept }`;
 	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 	return (
 		<div className="min-h-screen bg-white">
@@ -89,7 +89,7 @@ export default async function Page() {
 							</p>
 							<p>
 								That’s 3,650 ads per year. What do we charge? Way too
-								little—$6,000 per month.
+								little—$5,995 per month.
 							</p>
 							<p>Why pay per ad when you can get unlimited?</p>
 							<p>Cancel or pause subscription anytime—no questions asked.</p>

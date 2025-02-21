@@ -11,6 +11,11 @@ export const postType = defineType({
 			name: "title",
 			type: "string",
 		}),
+		defineField({
+			name: "isConcept",
+			type: "boolean",
+			initialValue: true,
+		}),
 
 		defineField({
 			name: "image",
