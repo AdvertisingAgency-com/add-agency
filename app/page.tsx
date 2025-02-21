@@ -123,7 +123,7 @@ export default async function Page() {
 						<div className="flex items-center gap-4">
 							<Button className="rounded-full bg-black text-[16px] text-white hover:bg-gray-800">
 								<Link
-									href="https://buy.stripe.com/afadfa"
+									href="https://buy.stripe.com/aEUfZj7fke4Sfw44gz"
 									target="_blank"
 									rel="norefferer"
 								>
