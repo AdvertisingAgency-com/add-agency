@@ -18,6 +18,29 @@ import Link from "next/link";
 
 const options = { next: { revalidate: 30 } };
 
+const IMAGES = [
+	{
+		id: 1,
+		src: "/adslibrary.png",
+	},
+	{
+		id: 2,
+		src: "/documenting.png",
+	},
+	{
+		id: 3,
+		src: "/memix.png",
+	},
+	{
+		id: 4,
+		src: "/science.png",
+	},
+	{
+		id: 5,
+		src: "/sseo.png",
+	},
+];
+
 export default async function Page() {
 	const POSTS_QUERY = `*[_type == "post"]{ _id, title, image }`;
 	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
@@ -53,11 +76,16 @@ export default async function Page() {
 						<div className="flex items-center gap-2">
 							<p>We've created ads for</p>
 							<div className="flex gap-2">
-								{["uber", "wordpress", "instagram", "medium", "draft"].map(
-									(brand, i) => (
-										<div key={i} className="h-6 w-6 rounded-full bg-gray-900" />
-									),
-								)}
+								{IMAGES.map((image) => (
+									<Image
+										src={image.src}
+										alt="Logo"
+										className="size-8 rounded-full object-cover"
+										width={80}
+										height={80}
+										key={image.id}
+									/>
+								))}
 							</div>
 							<p>, and many many more.</p>
 						</div>
