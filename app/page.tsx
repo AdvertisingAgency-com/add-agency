@@ -171,7 +171,8 @@ export default async function Page() {
 					<AdCarousel ads={posts} />
 					<footer>
 						<p className="text-start text-gray-600 text-sm">
-							© 2024 AdvertisingAgency.com. All rights reserved.
+							© {new Date().getFullYear()} AdvertisingAgency.com. All rights
+							reserved.
 						</p>
 					</footer>
 				</main>
