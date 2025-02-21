@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -16,7 +17,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
 	title: "AdvertisingAgency.com",
 	description:
-		"An Advertising Agency That Actually Works Meta description: Need better ads? We create 10 world-class static ad creatives every day for your brand, so you can focus on what really matters—scaling.",
+		"Need better ads? We create 10 world-class static ad creatives every day for your brand, so you can focus on what really matters—scaling.",
 };
 
 export default function RootLayout({
@@ -31,6 +32,7 @@ export default function RootLayout({
 			>
 				<main>{children} </main>
 			</body>
+			<GoogleAnalytics gaId="G-TSEQX5ZDLZ" />
 		</html>
 	);
 }

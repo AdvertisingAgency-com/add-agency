@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
 	Carousel,
@@ -12,6 +14,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityDocument } from "next-sanity";
 import Image from "next/image";
@@ -20,13 +23,14 @@ interface AdCarouselProps {
 	ads: SanityDocument[];
 }
 export const AdCarousel = ({ ads }: AdCarouselProps) => {
+	const isMobile = useMediaQuery("(max-width: 768px)");
 	return (
 		<div className="w-full overflow-hidden px-4">
 			<Carousel
 				opts={{
 					align: "start",
 					loop: true,
-					slidesToScroll: 3,
+					slidesToScroll: isMobile ? 1 : 3,
 				}}
 				className="relative w-full"
 			>
