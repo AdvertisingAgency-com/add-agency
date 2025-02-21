@@ -26,20 +26,20 @@ export default async function Page() {
 	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="px-4 py-8 sm:px-16">
-				<header className="mb-4">
+			<div className="py-8">
+				<header className="mb-4 px-4 sm:px-16">
 					<Link href="/">
 						<Image src="/logo.svg" alt="Logo" width={40} height={24} />
 					</Link>
 				</header>
 
 				<main className="mx-auto space-y-8">
-					<div className="max-w-3xl space-y-2">
+					<div className="max-w-3xl space-y-2 px-4 sm:px-16">
 						<p>
 							We're{" "}
-							<Link href="/" className="text-blue-600 hover:underline">
+							<span className="cursor-pointer text-blue-600">
 								AdvertisingAgency.com
-							</Link>
+							</span>
 							—crazy domain, right? We're that serious.
 						</p>
 
@@ -67,7 +67,7 @@ export default async function Page() {
 									/>
 								))}
 							</div>
-							<p>, and many many more.</p>
+							<p>and many many more.</p>
 						</div>
 
 						<div className="space-y-2">
@@ -100,7 +100,7 @@ export default async function Page() {
 							</p>
 						</div>
 
-						<p>
+						<p className="pb-4">
 							Below you can find ads and{" "}
 							<TooltipProvider>
 								<Tooltip>
@@ -123,7 +123,7 @@ export default async function Page() {
 						<div className="flex items-center gap-4">
 							<Button className="rounded-full bg-black text-[16px] text-white hover:bg-gray-800">
 								<Link
-									href="https://buy.stripe.com/afadfa"
+									href="https://buy.stripe.com/aEUfZj7fke4Sfw44gz"
 									target="_blank"
 									rel="norefferer"
 								>
@@ -150,7 +150,7 @@ export default async function Page() {
 						</span>
 					</div>
 					<AdCarousel ads={posts} />
-					<footer>
+					<footer className="px-4 sm:px-16">
 						<p className="text-start text-gray-600 text-sm">
 							© {new Date().getFullYear()} AdvertisingAgency.com. All rights
 							reserved.

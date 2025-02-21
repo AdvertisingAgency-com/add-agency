@@ -26,6 +26,7 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 				opts={{
 					align: "start",
 					loop: true,
+					slidesToScroll: 3,
 				}}
 				className="relative w-full"
 			>
