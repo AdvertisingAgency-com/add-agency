@@ -31,7 +31,11 @@ export const postType = defineType({
 				}),
 			],
 		}),
-
+		defineField({
+			name: "orderRank",
+			type: "string",
+			hidden: true,
+		}),
 		defineField({
 			name: "publishedAt",
 			type: "datetime",

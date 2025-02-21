@@ -17,7 +17,9 @@ const IMAGES = [
 ];
 
 export default async function Page() {
-	const POSTS_QUERY = `*[_type == "post"]{ _id, title, image, isConcept }`;
+	const POSTS_QUERY = `*[_type == "post"] | order(orderRank) {
+		_id, title, image, isConcept
+	  }`;
 	const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 	return (
 		<div className="min-h-screen bg-white">
