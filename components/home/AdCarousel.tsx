@@ -36,21 +36,21 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 							<CarouselItem key={index} className="basis-auto pl-4">
 								<Card className="border-0 shadow-none">
 									<CardContent className="p-0">
-										<div className="relative w-[320px]">
+										<div className="relative ">
 											{adImageUrl && (
 												<Image
 													src={adImageUrl}
 													alt={ad.title}
 													width={320}
 													height={400}
-													className="h-auto w-full rounded-lg"
+													className="h-[350px] w-full rounded-lg object-contain"
 													priority={index === 0}
 												/>
 											)}
 										</div>
 									</CardContent>
-									<CardFooter className="pt-2 pb-0">
-										<div className="flex items-center gap-1 text-muted-foreground text-sm">
+									<CardFooter className="p-0 pt-2 pb-0">
+										<div className="flex items-center gap-1 pt-2 text-muted-foreground text-sm">
 											<span>{ad.title}</span>
 											<span className="text-xs">·</span>
 											<TooltipProvider>
