@@ -47,15 +47,15 @@ export default async function Page() {
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="py-8 pl-16">
-				<header className="mb-10">
+				<header className="mb-4">
 					<Link href="/">
-						<Image src="/logo.svg" alt="Logo" width={60} height={60} />
+						<Image src="/logo.svg" alt="Logo" width={40} height={24} />
 					</Link>
 				</header>
 
 				<main className="space-y-8">
 					<div className="max-w-3xl space-y-2">
-						<p className="text-lg">
+						<p className="">
 							We're{" "}
 							<Link href="/" className="text-blue-600 hover:underline">
 								AdvertisingAgency.com
@@ -128,7 +128,7 @@ export default async function Page() {
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger asChild>
-										<button className="text-blue-600">Concepts </button>
+										<button className="text-blue-600">concepts </button>
 									</TooltipTrigger>
 									<TooltipContent className="max-w-sm">
 										<p>
