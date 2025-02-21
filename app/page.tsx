@@ -27,7 +27,8 @@ export default async function Page() {
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="py-8">
-				<header className="mb-4 px-4 sm:px-16">
+				<AdCarousel ads={posts} />
+				<header className="mt-10 mb-6 px-4 sm:px-16">
 					<Link href="/">
 						<Image src="/logo.svg" alt="Logo" width={40} height={24} />
 					</Link>
@@ -112,7 +113,7 @@ export default async function Page() {
 											These are example concepts created by us for illustrative
 											purposes and are not official campaigns or partnerships
 											with these brands. The ads marked with “(Concept ad)” in
-											the slider below are conceptual examples.
+											the slider above are conceptual examples.
 										</p>
 									</TooltipContent>
 								</Tooltip>
@@ -149,7 +150,7 @@ export default async function Page() {
 							Only 3 spots available right now
 						</span>
 					</div>
-					<AdCarousel ads={posts} />
+
 					<footer className="px-4 sm:px-16">
 						<p className="text-start text-gray-600 text-sm">
 							© {new Date().getFullYear()} AdvertisingAgency.com. All rights
