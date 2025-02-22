@@ -8,16 +8,12 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityDocument } from "next-sanity";
 import Image from "next/image";
+import { AdaptiveTooltip } from "../adaptive-tooltip";
 
 interface AdCarouselProps {
 	ads: SanityDocument[];
@@ -41,14 +37,22 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 							<CarouselItem key={index} className="basis-auto pl-4">
 								<Card className="border-0 shadow-none">
 									<CardContent className="p-0">
-										<div className="relative">
+										<div className="relative h-[350px] w-full">
 											{adImageUrl && (
 												<Image
 													src={adImageUrl}
 													alt={ad.title}
 													width={320}
 													height={400}
-													className="h-[350px] w-full rounded-[14px] border border-[#E7E7E7] object-fill md:object-contain "
+													className={cn(
+														"h-full w-full rounded-[14px] border border-[#E7E7E7]",
+														"transition-all duration-300",
+														// For portrait images (height > width)
+														ad.image.dimensions?.height >
+															ad.image.dimensions?.width
+															? "mx-auto max-w-[200px] object-contain" // Constrain width for tall images
+															: "w-auto object-contain", // Fill container for square/landscape images
+													)}
 													priority={index === 0}
 												/>
 											)}
@@ -58,21 +62,26 @@ export const AdCarousel = ({ ads }: AdCarouselProps) => {
 										<div className="flex items-center gap-1 pt-2 text-muted-foreground text-sm">
 											<span className="text-[#3F3F3F]">{ad.title}</span>
 											{ad.isConcept && (
-												<TooltipProvider>
-													<Tooltip>
-														<TooltipTrigger asChild>
-															<button className="text-[#C3C3C3]">
-																(Concept ad)
-															</button>
-														</TooltipTrigger>
-														<TooltipContent className="max-w-sm">
-															<p>
-																This is a conceptual ad created for illustrative
-																purposes only and is not an official campaign.
-															</p>
-														</TooltipContent>
-													</Tooltip>
-												</TooltipProvider>
+												<AdaptiveTooltip
+													isCocnept
+													title="(Concept ad)"
+													description="This is a conceptual ad created for illustrative purposes only and is not an official campaign."
+												/>
+												// <TooltipProvider>
+												// 	<Tooltip>
+												// 		<TooltipTrigger asChild>
+												// 			<button className="text-[#C3C3C3]">
+												// 				(Concept ad)
+												// 			</button>
+												// 		</TooltipTrigger>
+												// 		<TooltipContent className="max-w-sm">
+												// 			<p>
+												// 				This is a conceptual ad created for illustrative
+												// 				purposes only and is not an official campaign.
+												// 			</p>
+												// 		</TooltipContent>
+												// 	</Tooltip>
+												// </TooltipProvider>
 											)}
 										</div>
 									</CardFooter>
