@@ -12,23 +12,30 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 
-export const AdaptiveTooltip = () => {
+interface AdaptiveTooltipProps {
+	title: string;
+	description: string;
+	isCocnept?: boolean;
+}
+export const AdaptiveTooltip = ({
+	title,
+	description,
+	isCocnept,
+}: AdaptiveTooltipProps) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
 
 	if (isMobile) {
 		return (
 			<Popover>
 				<PopoverTrigger asChild>
-					<button className="text-blue-600">concepts</button>
+					<button className={cn(isCocnept ? null : "text-blue-600")}>
+						{title}
+					</button>
 				</PopoverTrigger>
 				<PopoverContent className="max-w-sm p-2 text-sm">
-					<p>
-						These are example concepts created by us for illustrative purposes
-						and are not official campaigns or partnerships with these brands.
-						The ads marked with “(Concept ad)” in the slider above are
-						conceptual examples.
-					</p>
+					<p>{description}</p>
 				</PopoverContent>
 			</Popover>
 		);
@@ -38,15 +45,12 @@ export const AdaptiveTooltip = () => {
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<button className="text-blue-600">concepts</button>
+					<button className={cn(isCocnept ? null : "text-blue-600")}>
+						{title}
+					</button>
 				</TooltipTrigger>
 				<TooltipContent className="max-w-sm p-2 text-sm">
-					<p>
-						These are example concepts created by us for illustrative purposes
-						and are not official campaigns or partnerships with these brands.
-						The ads marked with “(Concept ad)” in the slider above are
-						conceptual examples.
-					</p>
+					<p>{description}</p>
 				</TooltipContent>
 			</Tooltip>
 		</TooltipProvider>

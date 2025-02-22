@@ -99,7 +99,14 @@ export default async function Page() {
 						</div>
 
 						<p className="pb-4">
-							Below you can find ads and <AdaptiveTooltip />
+							Above you can find ads and{" "}
+							<AdaptiveTooltip
+								title="concepts"
+								description="These are example concepts created by us for illustrative purposes
+						and are not official campaigns or partnerships with these brands.
+						The ads marked with “(Concept ad)” in the slider above are
+						conceptual examples."
+							/>
 							{/* <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
